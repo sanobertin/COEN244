@@ -19,6 +19,18 @@ char Player::getDisc() const {
 void Player::setDisc(char somecharacter) {
     this->disc =  somecharacter;
 }
+
+int Player::getDiscsCount() const {
+    return this->discsCount;
+}
+
+void Player::discsIncrement(){
+    discsCount++;
+}
+
+void Player::discsDecrement(){
+    discsCount--;
+}
 Player::~Player() {
-    std::clog << "Destroying Player "<<name<<std::endl;
+    std::clog << "\nDestroying Player "<<name<<std::endl;
 }

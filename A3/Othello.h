@@ -7,32 +7,25 @@
 #include "Board.h"
 #include "Position.h"
 #include <stdlib.h>
+#include <string>
+using std::string;
 
-
-class Othello{
+class Othello final{
 private:
     Player Player1;
     Player Player2;
     Player current; // to track current player
-    Board gameBoard;
-    void save();
+    void flipColors(Player& arg1, Player& arg2); // first arg implies current player
 public:
-    Othello(Player p1, Player p2);
+    Othello(Player,Player,string);
     ~Othello();
+    Board othelloBoard;
     void start();
     Board load();
     void play();
-    void makeMove(int row, int col, Player p);
+    void makeMove(int row, int col, Player xPlayer);
+    void save();
+    void status();
 
 };
 
-
-void clearscreen(){
-#ifdef _WIN32
-    std::system("cls");
-#elif _WIN64
-    std::system("cls");
-#elif __APPLE__ || __MACH__
-    std::system("clear");
-#endif
-}

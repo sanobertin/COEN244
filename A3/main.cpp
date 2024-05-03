@@ -46,4 +46,13 @@ int main(){
             cerr << "Invalid option. Try again" << endl;
     }
      */
+    Player X("Daredevil");
+    Player Y("Simpson");
+    Othello mygame(X, Y, "4x4");
+    cout <<"Size of Othello instance: "<< sizeof(Othello)<< endl;
+    mygame.othelloBoard.printBoard();
+
+
+
+    return 0;
 }

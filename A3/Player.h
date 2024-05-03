@@ -17,12 +17,15 @@ private:
 public:
     Player() = default;
     Player(string name);
-    PlayablePosition pp;
+    //PlayablePosition pp;
     string getPlayer() const;
     void move();
     void concede();
     void forfeit();
     char getDisc() const;
+    int getDiscsCount() const;
+    void discsIncrement();
+    void discsDecrement();
     void setDisc(char somecharacter);
     ~Player();
 };

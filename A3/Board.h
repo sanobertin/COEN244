@@ -11,13 +11,14 @@ using std::string;
 class Board {
 private:
     string positionType; // standard or 4x4
+    Player xPlayer; // this instance denotes a player who can make changes to the Board
 public:
-    Board() = default;
+    Board(string);
     char board[8][8];
     void drawBoard();
     void printBoard();
-    Board(string positions);
-    ~Board();
+    void takeTurn(Player& xPlayer); // this function is used to switch players who can modify on board
+    //~Board();
     //void takeTurn(Player current);
 };
 

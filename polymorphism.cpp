@@ -11,12 +11,14 @@ using std::cout, std::cin, std::endl;
 class Hexagon : public Shape {
 private:
     int sideCount = 6;
+    friend class Shape;
 public:
-    ~Hexagon()  = default;
+    ~Hexagon() override {  }
     Hexagon() = default;
     int getSides() override {
         return this->sideCount;
     }
+
 
 
 };
@@ -25,7 +27,7 @@ class Square : public Shape{
 private:
     int sideCount {4};
 public:
-    ~Square() = default;
+    ~Square() override  {}
     Square() = default;
     int getSides() override{
         return this->sideCount;
@@ -33,11 +35,14 @@ public:
 };
 
 
+
 int main(){
-    Hexagon h1();
+    Hexagon h1;
     h1.status();
-    Square sq1();
+    Square sq1;
     cout << h1.getSides() << endl;
     cout << sq1.getSides() << endl;
+    cout << h1.get
 
+    return 0;
 }
