@@ -1,28 +1,25 @@
 #include <iostream>
 #include <string>
-#include <sstream>
-#include <regex>
-#include <filesystem>
-#include <array>
+#include <vector>
 using namespace std;
-array <string, 4> extractRow(string arg);
 
+template<class AnyType>
+auto less_than_or_equal_to = [](AnyType& a, AnyType& b){return a <= b;};
+template<class AnyType>
+auto greater_than_or_equal_to = [](AnyType& a, AnyType& b){return a >= b;};
 
 int main(){
-    //cout.flush();
-    clog <<endl<<"The system is currently running on folder: "<<filesystem::current_path()<<endl;
-    string status = "UGrad";
-    string name = "Abdulla";
-    int id = 5788200;
-    int year = 2019;
-    string ss = status+TAB+name+  TAB+ to_string(id)+TAB+ to_string(year);
-    array<string, 4> getFromLine = extractRow(ss);
-    cout << getFromLine[0] << endl;
-    cout << getFromLine[1] << endl;
-    cout << getFromLine[2] << endl;
-    cout << getFromLine[3] << endl;
-
+    vector<double> numbers;
+    for(int i = 0; i < 20; i++){
+        numbers.emplace_back((std::rand()%100) / 3.14 );
+    }
+    for(auto i : numbers){
+        cout << i << endl;
+    }
+    std::sort(numbers.begin(), numbers.end(), less_than_or_equal_to<double>);
+    cout<< endl << "After sorting" << endl;
+    for(auto i : numbers){
+        cout << i << endl;
+    }
     return 0;
 }
-
-

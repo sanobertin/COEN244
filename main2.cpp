@@ -1,25 +1,58 @@
-// Created by Bertin Mihigo Sano on 2023-09-15.
-//
+#include <iostream>
 
-#include<iostream>
+// Pure abstract class
+class Shape {
+public:
+    // Pure virtual function makes the class abstract
+    virtual void draw() const = 0;
 
-using namespace std;
-
-int main(){
-    cout <<" how many courses: ";
-    int num;
-    cin >> num;
-    double marks[num];
-    while(num>=0){
-        cout <<"Enter "<<num - 4<<" number: ";
-        cin >> marks[num-1];
-        num--;
-        cout << endl;
+    // Non-pure virtual function
+    virtual void displayArea() const {
+        std::cout << "Area is not defined for this shape." << std::endl;
     }
-    double sum, avg;
-    for(size_t i: marks){
-        sum = sum+ marks[i];
+
+    // Virtual destructor (good practice for a base class with virtual functions)
+    virtual ~Shape() {
+        std::cout << "Shape destructor called." << std::endl;
     }
-    cout << "Average: "<<avg << endl;
-    cout << "Sum: "<<sum<<endl;
+};
+
+// Concrete class derived from the pure abstract class
+class Circle : public Shape {
+private:
+    double radius;
+
+public:
+    Circle(double r) : radius(r) {}
+
+    // Override the pure virtual function
+    void draw() const override {
+        std::cout << "Drawing a circle with radius " << radius << std::endl;
+    }
+
+    // Override the non-pure virtual function
+    void displayArea() const override {
+        double area = 3.14 * radius * radius;
+        std::cout << "Area of the circle: " << area << std::endl;
+    }
+
+    // Destructor
+    ~Circle() override {
+        std::cout << "Circle destructor called." << std::endl;
+    }
+};
+
+int main() {
+    // Attempting to create an object of the abstract class (will result in a compilation error)
+    // Shape shape; // This line will cause a compilation error
+
+    // Creating an object of the derived class
+    Circle circle(5.0);
+
+    // Calling virtual functions through the base class pointer
+    Shape* shapePtr = &circle;
+    shapePtr->draw();
+    shapePtr->displayArea();
+
+    return 0;
 }
